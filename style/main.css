@@ -1,0 +1,26 @@
+html,
+body {
+  background: white;
+  color: black;
+}
+
+#display {
+  border: 1px solid black;
+  width: 50%;
+  height: 25em;
+  margin: 0 auto;
+}
+
+svg circle {
+  fill: black;
+  opacity: 0.5;
+}
+
+svg line {
+  stroke: black;
+  stroke-width: 2px;
+}
+
+#api_input {
+  z-index: 2;
+}
