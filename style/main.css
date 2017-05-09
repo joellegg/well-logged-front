@@ -1,26 +1,46 @@
 html,
 body {
-  background: white;
+  background: #B3B3B3;
   color: black;
 }
 
-#display {
-  border: 1px solid black;
+.container {
+  display: flex;
+}
+
+.left-container {
+  padding: 2em;
   width: 50%;
-  height: 25em;
+}
+
+.right-container {
   margin: 0 auto;
 }
 
-svg circle {
-  fill: black;
-  opacity: 0.5;
+.gusherWell {
+  height: 26em;
 }
 
-svg line {
-  stroke: black;
-  stroke-width: 2px;
+.about-justified {
+  text-align: justify;
 }
 
-#api_input {
-  z-index: 2;
+.api-form {
+  padding: 1.5em;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #E7E7E7;
+}
+
+#api-form-input {
+  border-radius: 5px;
+  height: 1.8em;
+  padding-left: 0.6em;
+  font-size: 0.8em;
+}
+
+#api-form-submit {
+  font-size: 1.1em;
+  border-radius: 5px;
+  float: right;
 }
