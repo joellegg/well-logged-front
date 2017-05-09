@@ -6,3 +6,6 @@ Well Logged provides access to well logs that were collected during the drilling
 # Tech
 I want to keep the project as small and simple as possible. No fancy libraries. Just some clean, raw, JavaScript.
 js
+
+# Mockup
+<img src="images/theMockup.png" alt="mockup">
