@@ -1,4 +1,7 @@
+html,
 body {
+  background: #B3B3B3;
+  color: black;
   margin: 0;
   padding: 0;
   font-family: sans-serif;

@@ -1,15 +1,9 @@
-html,
-body {
-  background: #B3B3B3;
-  color: black;
-}
-
 .container {
   display: flex;
 }
 
 .left-container {
-  padding: 2em;
+  padding: 2em 0 0 6em;
   width: 50%;
 }
 
@@ -37,6 +31,7 @@ body {
   height: 1.8em;
   padding-left: 0.6em;
   font-size: 0.8em;
+  margin-left: 1em;
 }
 
 #api-form-submit {
