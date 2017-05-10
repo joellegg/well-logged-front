@@ -1,18 +1,10 @@
-import React, { Component } from 'react';
-import Select from 'react-select';
-import 'react-select/dist/react-select.css';
+import React, { Component } from 'react'
+import 'react-select/dist/react-select.css'
 import './App.css';
 
+import States from './components/states'
+
 class App extends Component {
-  var options = [
-    { value: 'one', label: 'One' },
-    { value: 'two', label: 'Two' }
-  ];
-
-  function logChange(val) {
-    console.log("Selected: " + val);
-  }
-
   render() {
     return (
       <div className="container">
@@ -21,12 +13,7 @@ class App extends Component {
           <h3 className="about-justified">The process is simple. Enter the 10 digit API number of the well your interested in, select the logs you want, and download. The logs will automagically download to your system. Eventually the data will be converted to txt files using machine learning principles. For now, enjoy the simplicity.</h3>
           <div className="api-form">
             <label for="api_search">API no.</label>
-            <Select
-              name="form-field-name"
-              value="one"
-              options={options}
-              onChange={logChange}
-            />
+            <States label="States" searchable />
             <input id="api-form-input" type="text" name="api_search" placeholder="##-###-#####" />
             <button id="api-form-submit">Download</button>
           </div>
@@ -35,7 +22,7 @@ class App extends Component {
           <img className="gusherWell" src={require('../images/OilWellGushing.gif')} alt="gushing oil well" />
         </div>
       </div>
-    );
+    )
   }
 }
 

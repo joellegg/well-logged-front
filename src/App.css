@@ -12,7 +12,9 @@
 }
 
 .gusherWell {
-  height: 26em;
+  margin-top: 5em;
+  height: 28em;
+  animation-iteration-count: infinite;
 }
 
 .about-justified {
