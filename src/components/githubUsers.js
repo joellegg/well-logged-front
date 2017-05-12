@@ -2,9 +2,10 @@
 import React from 'react';
 import Select from 'react-select';
 import axios from 'axios';
+import './logs.css'
 
 const GithubUsers = React.createClass({
-  displayName: 'GithubUsers',
+  // displayName: 'There will be logs',
   propTypes: {
     label: React.PropTypes.string,
   },
@@ -19,41 +20,20 @@ const GithubUsers = React.createClass({
       value: value,
     });
   },
-  switchToMulti () {
-    this.setState({
-      multi: true,
-      value: [this.state.value],
-    });
-  },
-  switchToSingle () {
-    this.setState({
-      multi: false,
-      value: this.state.value ? this.state.value[0] : null
-    });
-  },
-  getUsers (input) {
+  getLogs (input) {
     if (!input) {
       return Promise.resolve({ options: [] });
+    } else if (input.length > 7) {
+      return axios.get(`http://localhost:8080/v1/apis/${input}`)
+        .then(response => response.json)
+        .then((json) => {
+          return { options: json.items };
+        })
+        .catch(err => console.log(err));
     }
-
-    return fetch(`https://api.github.com/search/users?q=${input}`)
-    .then((response) => response.json())
-    .then((json) => {
-      return { options: json.items };
-    });
   },
   gotoUser (value, event) {
-    window.open(value.html_url);
-  },
-  toggleBackspaceRemoves () {
-    this.setState({
-      backspaceRemoves: !this.state.backspaceRemoves
-    });
-  },
-  toggleCreatable () {
-    this.setState({
-      creatable: !this.state.creatable
-    });
+    window.open(value.html_url)
   },
   render () {
     const AsyncComponent = this.state.creatable
@@ -63,28 +43,7 @@ const GithubUsers = React.createClass({
     return (
       <div className="section">
         <h3 className="section-heading">{this.props.label}</h3>
-        <AsyncComponent multi={this.state.multi} value={this.state.value} onChange={this.onChange} onValueClick={this.gotoUser} valueKey="id" labelKey="login" loadOptions={this.getUsers} backspaceRemoves={this.state.backspaceRemoves} />
-        <div className="checkbox-list">
-          <label className="checkbox">
-            <input type="radio" className="checkbox-control" checked={this.state.multi} onChange={this.switchToMulti}/>
-            <span className="checkbox-label">Multiselect</span>
-          </label>
-          <label className="checkbox">
-            <input type="radio" className="checkbox-control" checked={!this.state.multi} onChange={this.switchToSingle}/>
-            <span className="checkbox-label">Single Value</span>
-          </label>
-        </div>
-        <div className="checkbox-list">
-          <label className="checkbox">
-            <input type="checkbox" className="checkbox-control" checked={this.state.creatable} onChange={this.toggleCreatable} />
-            <span className="checkbox-label">Creatable?</span>
-          </label>
-          <label className="checkbox">
-            <input type="checkbox" className="checkbox-control" checked={this.state.backspaceRemoves} onChange={this.toggleBackspaceRemoves} />
-            <span className="checkbox-label">Backspace Removes?</span>
-          </label>
-        </div>
-        <div className="hint">This example uses fetch.js for showing Async options with Promises</div>
+        <AsyncComponent className="skinny" multi={this.state.multi} value={this.state.value} onChange={this.onChange} onValueClick={this.gotoUser} valueKey="id" labelKey="login" loadOptions={this.getLogs} backspaceRemoves={this.state.backspaceRemoves} />
       </div>
     );
   }
