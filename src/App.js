@@ -18,12 +18,14 @@ class App extends Component {
             <button id="api-form-submit">Download</button>
           </div>
         </div>
-        <div className="right-container">
-          <img className="gusherWell" src={require('../images/OilWellGushing.gif')} alt="gushing oil well" />
-        </div>
       </div>
     )
   }
 }
 
 export default App;
+
+
+//         <div className="right-container">
+        //   <img className="gusherWell" src={require('../images/OilWellGushing.gif')} alt="gushing oil well" />
+        // </div>
