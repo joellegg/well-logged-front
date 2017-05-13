@@ -1,33 +1,35 @@
 // https://github.com/JedWatson/react-select
-import React from 'react';
+import React, {Component} from 'react';
 import Select from 'react-select';
 import axios from 'axios';
-import './logs.css'
+import './Logs.css'
 
 // select distinct on (api) * from api_docs where api like '05-123-2345%' limit 10
 
-const GithubUsers = React.createClass({
-  // displayName: 'There will be logs',
-  propTypes: {
-    label: React.PropTypes.string,
-  },
-  getInitialState () {
-    return {
+class Logs extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
       data: [],
       backspaceRemoves: true,
-      multi: false,
-      value: "05-"
-    };
-  },
-  onChange (value) {
-    this.setState({
-      value: value,
-    });
-  },
+      apiInt: '',
+    }
+    this.getLogs = this.getLogs.bind(this)
+    this.getApiInt = this.getApiInt.bind(this)
+  }
+
+  // onChange (value) {
+  //   console.log('on change called')
+  //   this.setState({
+  //     value: value,
+  //   })
+  // }
+
   getLogs (input) {
-    if (!input) {
+    if (!input || input.length !== 12) {
+      this.setState({ data: [] })
       return Promise.resolve({ data: [] });
-    } else if (input.length > 11) {
+    } else if (input.length === 12) {
       return axios.get(`http://localhost:8080/v1/apis/${input}`)
         .then((response) => {
           let data = response.data.map((res) => {
@@ -41,22 +43,34 @@ const GithubUsers = React.createClass({
         })
         .catch(err => console.log(err));
     }
-  },
+  }
+
+  getApis (input) {
+    console.log('getApis called')
+  }
+
   gotoUser (value, event) {
     window.open(value.html_url)
-  },
+  }
+
+  getApiInt(event) {
+    this.setState({ apiInt: event.target.value })
+    this.getLogs(event.target.value)
+  }
+
   render () {
     const AsyncComponent = Select.Async;
     return (
       <div className="section">
         <h3 className="section-heading">{this.props.label}</h3>
-        <AsyncComponent className="skinny" multi={this.state.multi} value={this.state.value} onChange={this.onChange} onValueClick={this.gotoUser} valueKey="id" labelKey="login" loadOptions={this.getLogs} backspaceRemoves={this.state.backspaceRemoves} />
+        <input className="skinny" type="text" value={this.state.apiInt} onChange={this.getApiInt} />
+        <AsyncComponent className="skinny" value={this.state.value} onChange={this.getLogs} onValueClick={this.getLogs} valueKey="id" labelKey="login" loadOptions={this.getApis} />
         <div>
           <h3>Data!</h3>
           {this.state.data.map(function(log) {
             return (
-              <div key={log.doc_type} className="log">
-                <a href={'http://cogcc.state.co.us/weblink/' + log.doc_link}>
+              <div key={log.doc_link} className="log">
+                <a className='log_href' href={'http://cogcc.state.co.us/weblink/' + log.doc_link}>
                   {log.doc_type}
                 </a>
               </div>
@@ -66,6 +80,6 @@ const GithubUsers = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = GithubUsers;
+export default Logs;
