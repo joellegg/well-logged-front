@@ -13,9 +13,10 @@ const GithubUsers = React.createClass({
   },
   getInitialState () {
     return {
-      options: [],
+      data: [],
       backspaceRemoves: true,
-      multi: false
+      multi: false,
+      value: "05-"
     };
   },
   onChange (value) {
@@ -25,12 +26,18 @@ const GithubUsers = React.createClass({
   },
   getLogs (input) {
     if (!input) {
-      return Promise.resolve({ options: [] });
+      return Promise.resolve({ data: [] });
     } else if (input.length > 11) {
       return axios.get(`http://localhost:8080/v1/apis/${input}`)
         .then((response) => {
-          console.log(response.data)
-          this.setState({ options: response.data })
+          let data = response.data.map((res) => {
+            if (res.doc_type === 'n/a') {
+              res.doc_type = 'none available'
+              res.doc_link = '#'
+            }
+            return { api: res.api, doc_type:res.doc_type.toLowerCase(), doc_link:res.doc_link}
+          })
+          this.setState({ data })
         })
         .catch(err => console.log(err));
     }
@@ -39,11 +46,23 @@ const GithubUsers = React.createClass({
     window.open(value.html_url)
   },
   render () {
-    const AsyncComponent = this.state.creatable ? Select.AsyncCreatable : Select.Async;
+    const AsyncComponent = Select.Async;
     return (
       <div className="section">
         <h3 className="section-heading">{this.props.label}</h3>
         <AsyncComponent className="skinny" multi={this.state.multi} value={this.state.value} onChange={this.onChange} onValueClick={this.gotoUser} valueKey="id" labelKey="login" loadOptions={this.getLogs} backspaceRemoves={this.state.backspaceRemoves} />
+        <div>
+          <h3>Data!</h3>
+          {this.state.data.map(function(log) {
+            return (
+              <div key={log.doc_type} className="log">
+                <a href={'http://cogcc.state.co.us/weblink/' + log.doc_link}>
+                  {log.doc_type}
+                </a>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
