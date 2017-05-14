@@ -18,12 +18,12 @@ class Logs extends Component {
     this.getApiInt = this.getApiInt.bind(this)
   }
 
-  // onChange (value) {
-  //   console.log('on change called')
-  //   this.setState({
-  //     value: value,
-  //   })
-  // }
+  onChange (value) {
+    console.log('on change called')
+    this.setState({
+      value: value,
+    })
+  }
 
   getLogs (input) {
     if (!input || input.length !== 12) {
@@ -46,7 +46,26 @@ class Logs extends Component {
   }
 
   getApis (input) {
-    console.log('getApis called')
+    if (input.length > 8 && input.length < 12) {
+      console.log('get apis called')
+      let options = []
+      return axios.get(`http://localhost:8080/v1/apis/query/${input}`)
+        .then((response) => {
+          // console.log('getApis response', response)
+          let mapped = response.data.map((res) => {
+            return res.api
+          })
+          let filtered = mapped.filter((value, pos) => {
+            return mapped.indexOf(value) == pos
+          })
+          console.log('filtered array', filtered.length)
+          for (let i = 0; i < 10; i++) {
+            options.push({ value: filtered[i], label: filtered[i] })
+          }
+          console.log('options', options)
+          return { options: options }
+        })
+    }
   }
 
   gotoUser (value, event) {
@@ -64,7 +83,8 @@ class Logs extends Component {
       <div className="section">
         <h3 className="section-heading">{this.props.label}</h3>
         <input className="skinny" type="text" value={this.state.apiInt} onChange={this.getApiInt} />
-        <AsyncComponent className="skinny" value={this.state.value} onChange={this.getLogs} onValueClick={this.getLogs} valueKey="id" labelKey="login" loadOptions={this.getApis} />
+
+        <AsyncComponent className="skinny" value={this.state.value} onChange={this.onChange} onValueClick={this.getLogs} valueKey="id" labelKey="login" loadOptions={this.getApis} />
         <div>
           <h3>Data!</h3>
           {this.state.data.map(function(log) {
