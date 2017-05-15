@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Select from 'react-select';
 import axios from 'axios';
 import './Logs.css'
+import '../fonts/Kraut-type-a-fuck.ttf'
 
 // select distinct on (api) * from api_docs where api like '05-123-2345%' limit 10
 
@@ -57,7 +58,7 @@ class Logs extends Component {
         resolve({isLoading: false})
       })
     }
-    if (input.length > 8 && input.length < 12) {
+    if (input.length > 8 && input.length <= 12) {
       let options = []
       return axios.get(`http://localhost:8080/v1/apis/query/${input}`)
         .then((response) => {
@@ -86,7 +87,7 @@ class Logs extends Component {
 
     return (
       <div className="section">
-        <h3 className="section-heading">{this.props.label}</h3>
+        <img className="section-heading" src="http://fontmeme.com/permalink/170515/b11d980d6db371f42cf6f72eea11a89c.png" alt="kraut-type-a-fuck-mr-fisk-font" />
 
         <AsyncComponent
           className="skinny"

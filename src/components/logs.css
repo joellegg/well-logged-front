@@ -1,7 +1,20 @@
+/*@import '../fonts/Kraut-type-a-fuck.ttf';*/
+
 .skinny {
   width: 50%;
+  font-family: serif;
 }
 
 .log_href {
-  color: ;
+  font-size: 1.2em;
+}
+
+@font-face {
+  font-family: 'kraut';
+  src: url('../fonts/Kraut-type-a-fuck.ttf'),
+      format('truetype');
+}
+
+.section-heading {
+  width: 50%;
 }

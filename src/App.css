@@ -22,7 +22,7 @@
 }
 
 .api-form {
-  padding: 1em 1em 3em;
+  padding: 1em;
   border: 1px solid black;
   border-radius: 5px;
   background-color: #E7E7E7;
@@ -40,4 +40,10 @@
   font-size: 1.1em;
   border-radius: 5px;
   float: right;
+}
+
+.left-container-fancyFont {
+  font-family: 'IM Fell DW Pica SC', serif;
+  font-size: 3em;
+  margin: 0.2em 0;
 }
