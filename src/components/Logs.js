@@ -18,7 +18,6 @@ class Logs extends Component {
       isLoading: false
     }
     this.getLogs = this.getLogs.bind(this)
-    this.getApiInt = this.getApiInt.bind(this)
     this.onChange = this.onChange.bind(this)
     this.getApis = this.getApis.bind(this)
   }
@@ -53,9 +52,10 @@ class Logs extends Component {
   }
 
   getApis (input) {
-    console.log('input', input.length)
-    if (input.length < 7) {
-      return {isLoading: false}
+    if (input.length <= 8) {
+      return new Promise((resolve, reject) => {
+        resolve({isLoading: false})
+      })
     }
     if (input.length > 8 && input.length < 12) {
       let options = []
@@ -65,6 +65,7 @@ class Logs extends Component {
             return res.api
           })
           let filtered = mapped.filter((value, pos) => {
+            // eslint-disable-next-line
             return mapped.indexOf(value) == pos
           })
           for (let i = 0; i < 10; i++) {
@@ -80,22 +81,31 @@ class Logs extends Component {
     window.open(value.html_url)
   }
 
-  getApiInt(event) {
-    this.setState({ apiInt: event.target.value })
-    this.getLogs(event.target.value)
-  }
-
   render () {
     const AsyncComponent = Select.Async;
+
     return (
       <div className="section">
         <h3 className="section-heading">{this.props.label}</h3>
 
-        <AsyncComponent className="skinny" value={this.state.value} onChange={this.onChange} onValueClick={this.getLogs} valueKey="api" labelKey="apiKey" autoLoad={false} loadOptions={this.getApis} placeholder='05-###-#####' isLoading={false} />
+        <AsyncComponent
+          className="skinny"
+          value={this.state.value}
+          onChange={this.onChange}
+          onValueClick={this.getLogs}
+          loadOptions={this.getApis}
+          valueKey="api"
+          labelKey="apiKey"
+          autoLoad={false}
+          placeholder='05-###-#####'
+        />
 
         <div>
           <h3>Available logs will display below</h3>
           {this.state.data.map(function(log) {
+            if (log.doc_type === 'none available') {
+              return <p key={log.doc_link}>No logs available</p>
+            }
             return (
               <div key={log.doc_link} className="log">
                 <a className='log_href' href={'http://cogcc.state.co.us/weblink/' + log.doc_link}>
