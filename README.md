@@ -5,8 +5,8 @@ Well Logged provides access to well logs that were collected during the drilling
 
 # Tech
 <img src="images/tech/react.png" alt="react" width="200px">
-<h3>axios</h3>
-<h3>React-Select</h3>
+<h3 style="font-size: 2em; margin-left: 1em">axios</h3>
+<h3 style="font-size: 2em; margin-left: 1em">React-Select</h3>
 
 # Mockup
 <img src="images/mockup.png" alt="mockup">
