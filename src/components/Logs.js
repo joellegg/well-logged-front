@@ -87,7 +87,7 @@ class Logs extends Component {
 
     return (
       <div className="section">
-        <img className="section-heading" src="http://fontmeme.com/permalink/170515/b11d980d6db371f42cf6f72eea11a89c.png" alt="kraut-type-a-fuck-mr-fisk-font" />
+        <img className="section-heading" src="http://fontmeme.com/permalink/170516/286964cfe214b6733f01dd6746e02b32.png" alt="kraut-type-a-fuck-mr-fisk-font" />
 
         <AsyncComponent
           className="skinny"
