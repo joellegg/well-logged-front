@@ -62,7 +62,7 @@ class Logs extends Component {
       let options = []
       return axios.get(`https://well-logged.herokuapp.com/v1/apis/query/${input}`)
         .then((response) => {
-          console.log(response)
+          // console.log(response)
           let mapped = response.data.map((res) => {
             return res.api
           })
