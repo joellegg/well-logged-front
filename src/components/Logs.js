@@ -37,7 +37,7 @@ class Logs extends Component {
       this.setState({ data: [] })
       return Promise.resolve({ data: [] });
     } else if (input.length === 12) {
-      return axios.get(`http://localhost:8080/v1/apis/${input}`)
+      return axios.get(`https://well-logged.herokuapp.com/v1/apis/${input}`)
         .then((response) => {
           let data = response.data.map((res) => {
             if (res.doc_type === 'n/a') {
@@ -60,8 +60,9 @@ class Logs extends Component {
     }
     if (input.length > 8 && input.length <= 12) {
       let options = []
-      return axios.get(`http://localhost:8080/v1/apis/query/${input}`)
+      return axios.get(`https://well-logged.herokuapp.com/v1/apis/query/${input}`)
         .then((response) => {
+          console.log(response)
           let mapped = response.data.map((res) => {
             return res.api
           })
@@ -87,7 +88,7 @@ class Logs extends Component {
 
     return (
       <div className="section">
-        <img className="section-heading" src="http://fontmeme.com/permalink/170515/b11d980d6db371f42cf6f72eea11a89c.png" alt="kraut-type-a-fuck-mr-fisk-font" />
+        <img className="section-heading" src="http://fontmeme.com/permalink/170516/286964cfe214b6733f01dd6746e02b32.png" alt="kraut-type-a-fuck-mr-fisk-font" />
 
         <AsyncComponent
           className="skinny"
