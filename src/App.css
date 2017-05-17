@@ -3,12 +3,13 @@
 }
 
 .left-container {
-  padding: 2em 0 0 6em;
+  padding: 2em 1em 0 4em;
   width: 50%;
 }
 
 .right-container {
-  margin: 0 auto;
+  padding: 2em 4em 0 1em;
+  width: 50%;
 }
 
 .gusherWell {
