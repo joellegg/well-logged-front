@@ -14,7 +14,6 @@ class Charts extends Component {
   }
 
   componentDidMount() {
-    console.log('data mounted', CO_countyCodes)
     return axios.get(`http://localhost:8080/v1/countLogs`)
       .then((response) => {
         let data = response.data.rows.map((res) => {
@@ -39,13 +38,17 @@ class Charts extends Component {
   }
 
   countCounty() {
-    console.log('count by county')
     return axios.get(`http://localhost:8080/v1/countCounties`)
       .then((response) => {
+        // eslint-disable-next-line
         let data = response.data.rows.map((res) => {
-          return { x:res.startswith, y:res.count}
+          let CO_code = res.startswith.slice(3, 6)
+          for (let i = 0; i < CO_countyCodes.CO.length; i++) {
+            if (CO_countyCodes.CO[i].code === CO_code) {
+              return { x:CO_countyCodes.CO[i].name, y:res.count}
+            }
+          }
         })
-        console.log('data', data)
         this.setState({ chartCount: false, data: data })
       })
       .catch(err => console.log(err));
@@ -62,7 +65,7 @@ class Charts extends Component {
           <span className="checkbox-label">log count by county</span>
         </label>
         <div>
-          <h3>Available logs will display below</h3>
+          <h3>Chart data goes here</h3>
           {this.state.data.map(function(log) {
             return (
               <p key={log.x}>{log.x} {log.y}</p>
