@@ -27,7 +27,7 @@ class Charts extends Component {
   }
 
   componentDidMount() {
-    return axios.get(`http://localhost:8080/v1/countLogs`)
+    return axios.get(`https://well-logged.herokuapp.com/v1/countLogs`)
       .then((response) => {
         let data = response.data.rows.map((res) => {
           return { label:res.doc_type, value:res.count}
@@ -38,7 +38,7 @@ class Charts extends Component {
   }
 
   countDoc() {
-    return axios.get(`http://localhost:8080/v1/countLogs`)
+    return axios.get(`https://well-logged.herokuapp.com/v1/countLogs`)
       .then((response) => {
         let data = response.data.rows.map((res) => {
           return { label:res.doc_type, value:res.count}
@@ -49,7 +49,7 @@ class Charts extends Component {
   }
 
   countCounty() {
-    return axios.get(`http://localhost:8080/v1/countCounties`)
+    return axios.get(`https://well-logged.herokuapp.com/v1/countCounties`)
       .then((response) => {
         // eslint-disable-next-line
         let data = response.data.rows.map((res) => {
