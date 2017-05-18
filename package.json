@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.1",
+    "fusioncharts": "^3.12.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-fusioncharts": "^1.0.4",
     "react-select": "^1.0.0-rc.3"
   },
   "devDependencies": {
@@ -17,6 +19,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy" : "npm run build&&gh-pages -d build"
+    "deploy": "npm run build&&gh-pages -d build"
   }
 }
