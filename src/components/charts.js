@@ -18,6 +18,7 @@ class Charts extends Component {
       data: [],
       chartCount: true,
       chartData: {
+        chart: {theme: 'zune'},
         data: []
       }
     }
@@ -31,7 +32,7 @@ class Charts extends Component {
         let data = response.data.rows.map((res) => {
           return { label:res.doc_type, value:res.count}
         })
-        this.setState({ chartCount: true, chartData: { data: data }})
+        this.setState({ chartCount: true, chartData: { chart: { caption: 'Log count by type', yAxisName: "Count", labelDisplay: "rotate", theme: "carbon" }, data: data }})
       })
       .catch(err => console.log(err));
   }
@@ -42,7 +43,7 @@ class Charts extends Component {
         let data = response.data.rows.map((res) => {
           return { label:res.doc_type, value:res.count}
         })
-        this.setState({ chartCount: true, chartData: { data: data }})
+        this.setState({ chartCount: true, chartData: { chart: { caption: 'Log count by type', yAxisName: "Count", labelDisplay: "rotate", theme: "carbon" }, data: data }})
       })
       .catch(err => console.log(err));
   }
@@ -59,7 +60,7 @@ class Charts extends Component {
             }
           }
         })
-        this.setState({ chartCount: false, chartData: { data: data }})
+        this.setState({ chartCount: false, chartData: { chart: { caption: 'Log count by county', xAxisName: "County", yAxisName: "Count", labelDisplay: "rotate", theme: "fint" }, data: data }})
       })
       .catch(err => console.log(err));
   }
