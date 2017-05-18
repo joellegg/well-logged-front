@@ -1,0 +1,26 @@
+.chart-container {
+  margin: 1em 0 2em;
+  padding: 1em;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: rgba(245,245,245, 0.8);
+}
+
+.chart-container-fancyFont {
+  font-family: 'IM Fell DW Pica SC', serif;
+  font-size: 2em;
+  margin: 0.2em 0;
+}
+
+.chart-style {
+  margin: 1em;
+}
+
+.checkbox-control {
+  margin: 1em;
+}
+
+.checkbox-label {
+  font-size: 1.2em;
+  font-family: serif;
+}

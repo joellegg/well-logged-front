@@ -88,7 +88,7 @@ class Logs extends Component {
 
     return (
       <div className="section">
-        <img className="section-heading" src="http://fontmeme.com/permalink/170516/286964cfe214b6733f01dd6746e02b32.png" alt="kraut-type-a-fuck-mr-fisk-font" />
+        <h2 className="log-section-logo">There will be logs</h2>
 
         <AsyncComponent
           className="skinny"
@@ -103,7 +103,7 @@ class Logs extends Component {
         />
 
         <div>
-          <h3>Available logs will display below</h3>
+          <h3>Available logs will display here</h3>
           {this.state.data.map(function(log) {
             if (log.doc_type === 'none available') {
               return <p key={log.doc_link}>No logs available</p>

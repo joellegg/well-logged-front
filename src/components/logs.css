@@ -7,12 +7,12 @@
   font-size: 1.2em;
 }
 
-@font-face {
-  font-family: 'kraut';
-  src: url('../fonts/Kraut-type-a-fuck.ttf'),
-      format('truetype');
-}
-
 .section-heading {
   width: 50%;
+}
+
+.log-section-logo {
+  font-family: 'IM Fell DW Pica SC', serif;
+  font-size: 2em;
+  margin: 0.2em 0;
 }

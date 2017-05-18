@@ -20,13 +20,14 @@
 
 .about-justified {
   text-align: justify;
+  font-family: serif;
 }
 
 .api-form {
   padding: 1em;
   border: 1px solid black;
   border-radius: 5px;
-  background-color: #E7E7E7;
+  background-color: rgba(245,245,245, 0.8);
 }
 
 #api-form-input {
@@ -43,8 +44,6 @@
   float: right;
 }
 
-.left-container-fancyFont {
-  font-family: 'IM Fell DW Pica SC', serif;
-  font-size: 3em;
-  margin: 0.2em 0;
+.left-container-logo {
+  width: 50%;
 }
