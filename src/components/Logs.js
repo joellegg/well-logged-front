@@ -53,12 +53,12 @@ class Logs extends Component {
   }
 
   getApis (input) {
-    if (input.length <= 8) {
+    if (input.length <= 2) {
       return new Promise((resolve, reject) => {
         resolve({isLoading: false})
       })
     }
-    if (input.length > 8 && input.length <= 12) {
+    if (input.length > 2 && input.length <= 12) {
       let options = []
       return axios.get(`https://well-logged.herokuapp.com/v1/apis/query/${input}`)
         .then((response) => {
@@ -100,6 +100,7 @@ class Logs extends Component {
           labelKey="apiKey"
           autoLoad={false}
           placeholder='05-###-#####'
+          pattern='\d{2}[\-]\d{3}[\-]\d{5}'
         />
 
         <div>
